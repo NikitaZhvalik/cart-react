@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { AppContext } from "../Cart";
+
 import './styls.scss';
 
-const Count = ({count, increase, decrease, id, changeValue}) => {
+const Count = ({count, id}) => {
+    const {increase, decrease , changeValue} = useContext(AppContext);
+
     return (
         <div className="count">
             <div className="count__box">

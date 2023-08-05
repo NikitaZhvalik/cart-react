@@ -2,7 +2,7 @@ import Count from '../Count';
 import ButtonDelete from '../ButtonDelete';
 import './style.scss';
 
-const Product = ({product, deleteProduct, increase, decrease, changeValue}) => {
+const Product = ({product}) => {
     const {img, priceTotal, title, count, id} = product;
 
     const priceFormatter = new Intl.NumberFormat();
@@ -12,11 +12,11 @@ const Product = ({product, deleteProduct, increase, decrease, changeValue}) => {
             <div className="product__img"><img src={`./img/products/${img}`} alt={title} /></div>
             <div className="product__title">{title}</div>
             <div className="product__count">
-                <Count count={count} increase={increase} decrease={decrease} changeValue={changeValue } id={id}/>
+                <Count count={count} id={id}/>
             </div>
             <div className="product__price">{priceFormatter.format(priceTotal)} руб.</div>
             <div className="product__controls">
-                <ButtonDelete deleteProduct={deleteProduct} id={id}/>
+                <ButtonDelete id={id}/>
             </div>
         </section>
     );

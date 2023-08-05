@@ -1,10 +1,13 @@
+import { useEffect, useState, createContext} from "react";
+
 import CartHeader from "../CartHeader";
 import CartFooter from "../CartFooter";
 import Product from "../Product";
 
-import { useEffect, useState } from "react";
 import Button from "../Button";
 
+export const AppContext = createContext(null);
+ 
 const Cart = () => {
     const [cart, setCart] = useState(null);
     const [total, setTotal] = useState(null);
@@ -121,27 +124,26 @@ const Cart = () => {
         .then((response) => {
             if (response.ok) setFetchData((value) => !value)
         })
+    }
 
+    const products = () => {
+        return cart.map((product) => {
+            return <Product 
+                product={product} 
+                key={product.id} 
+            />
+        })
     }
 
     return (
-        <section className="cart">
-            <Button title='Add product' onClick={addProduct}/>
-            <CartHeader />
-            {cart && 
-            cart.map((product) => {
-                return <Product 
-                    product={product} 
-                    key={product.id} 
-                    deleteProduct= {deleteProduct}
-                    increase={increase}
-                    decrease ={decrease}
-                    changeValue={changeValue}
-                />
-                })
-            }
-            {total && <CartFooter total={total}/>}
-        </section>
+        <AppContext.Provider value={{deleteProduct, increase, decrease, changeValue, addProduct}}>
+            <section className="cart">
+                <Button title='Add product'/>
+                <CartHeader />
+                {cart && products()}
+                {total && <CartFooter total={total}/>}
+            </section>
+        </AppContext.Provider>
     );
 }
  
