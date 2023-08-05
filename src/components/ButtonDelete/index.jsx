@@ -1,6 +1,6 @@
-const ButtonDelete = () => {
+const ButtonDelete = ({deleteProduct, id}) => {
     return (
-        <button type="button">
+        <button onClick={() => deleteProduct(id)} type="button">
             <img src="./img/icons/cross.svg" alt="Delete" />
         </button>
     );
