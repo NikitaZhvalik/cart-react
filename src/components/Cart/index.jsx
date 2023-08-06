@@ -3,8 +3,9 @@ import { useEffect, useState, createContext} from "react";
 import CartHeader from "../CartHeader";
 import CartFooter from "../CartFooter";
 import Product from "../Product";
-
 import Button from "../Button";
+
+import {serverPath} from './../../helpers/variables';
 
 export const AppContext = createContext(null);
  
@@ -14,7 +15,7 @@ const Cart = () => {
     const [fetchData, setFetchData] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:8000/products')
+        fetch(serverPath + 'products')
         .then((response) => {
             return response.json();
         })
@@ -33,7 +34,7 @@ const Cart = () => {
     }, [cart])
 
     const deleteProduct = (id) => {
-        fetch(`http://localhost:8000/products/${id}`, {
+        fetch(serverPath + `products/${id}`, {
         method: 'DELETE'
         })
         .then((response) => {
@@ -49,7 +50,7 @@ const Cart = () => {
             priceTotal: ++product.count * product.price
         }
 
-        fetch(`http://localhost:8000/products/${id}`, {
+        fetch(serverPath + `products/${id}`, {
             method: "PUT",
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(data)
@@ -69,7 +70,7 @@ const Cart = () => {
             priceTotal: newCount * product.price
         }
 
-        fetch(`http://localhost:8000/products/${id}`, {
+        fetch(serverPath + `products/${id}`, {
             method: "PUT",
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(data)
@@ -116,7 +117,7 @@ const Cart = () => {
             priceTotal: price
         }
 
-        fetch(`http://localhost:8000/products/`, {
+        fetch(serverPath + `products/`, {
             method: "POST",
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(data)

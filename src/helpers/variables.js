@@ -1,0 +1,1 @@
+export const serverPath = `https://lavender-possible-money.glitch.me/`;

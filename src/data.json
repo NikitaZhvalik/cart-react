@@ -6,14 +6,14 @@
       "title": "Apple Macbook air 13",
       "count": 3,
       "price": 110000,
-      "priceTotal": 440000
+      "priceTotal": 330000
     },
     {
       "img": "apple-watch.jpg",
       "title": "Apple Watch",
-      "count": 1,
+      "count": 4,
       "price": 29000,
-      "priceTotal": 29000,
+      "priceTotal": 145000,
       "id": 12
     },
     {
