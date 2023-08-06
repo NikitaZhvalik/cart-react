@@ -88,7 +88,7 @@ const Cart = () => {
             priceTotal: value * product.price
         }
 
-        fetch(`http://localhost:8000/products/${id}`, {
+        fetch(serverPath + `products/${id}`, {
             method: "PUT",
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify(data)
